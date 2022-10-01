@@ -1,44 +1,36 @@
 require('./bootstrap');
-window.Vue = require('vue');
+window.Vue = require('vue').default;
 
-// axios
+import App from './components/App';
+
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios);
 
-// vuex
 import store from "./store";
+Vue.use(store)
 
-// Component App là file Master FE
-import App from './components/App';
+import Vuetify from '../plugins/vuetify';
+Vue.use(Vuetify);
 
-// Khai báo các Components
-Vue.component('my-settings-panel', require('./components/TheSettingsPanel.vue').default);
-Vue.component('my-sidebar', require('./components/TheSidebar.vue').default);
-Vue.component('my-navbar', require('./components/TheNavbar.vue').default);
-Vue.component('my-footer', require('./components/TheFooter.vue').default);
-
-// axios.defaults.withCredentials = true;
-// axios.defaults.baseURL = 'https://gabbyblog.herokuapp.com/';
-
-// vuetify
-import vuetify from '../plugins/vuetify';
-
-// meta info - set title page
 import MetaInfo from 'vue-meta-info'
 Vue.use(MetaInfo)
 
 import Notifications from 'vue-notification'
 Vue.use(Notifications)
 
-// router.js
 import router from './router';
+Vue.use(router)
+
+Vue.component('my-settings-panel', require('./components/TheSettingsPanel.vue').default);
+Vue.component('my-sidebar', require('./components/TheSidebar.vue').default);
+Vue.component('my-navbar', require('./components/TheNavbar.vue').default);
+Vue.component('my-footer', require('./components/TheFooter.vue').default);
 
 const app = new Vue({
     el: '#app',
-    store: store,
-    router: router,
-    vuetify: vuetify,
+    store,
+    router,
     render: h => h(App)
 });
 

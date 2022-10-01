@@ -47,42 +47,50 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 grid-margin stretch-card">
+        <div class="row mt-4">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex flex-wrap justify-content-between">
-                            <h4 class="card-title mb-3">LỊCH SỬ NẠP XU</h4>
-                        </div>
-                        <p class="card-description">
-                            Lịch sử nạp xu của <span class="note-color">{{user.name != '' ? user.name : user.username}}</span> trong 10 lần gần nhất.
-                        </p>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tbody v-for="(payment, index) in paymentList" :key="index">
-                                    <tr>
-                                        <td>
-                                            Thời gian
-                                            <div class="font-weight-bold  mt-1">{{ payment.created_at | dateFormat }}</div>
-                                        </td>
-                                        <td>
-                                            Mã lệnh
-                                            <div class="font-weight-bold  mt-1"><router-link :to="{name: 'payment-order', params: { order_code: payment.code } }" class="note-page-payment text-success font-weight-bold p-0">{{ payment.code }}</router-link></div>
-                                        </td>
-                                        <td>
-                                            Trạng thái
-                                            <div class="font-weight-bold  mt-1" v-bind:style="{color: payment.status == 2 ? '#44803F' : '#B4CF66'}">{{ payment.status | checkStatus }}</div>
-                                        </td>
-                                        <td>
-                                            Số lượng
-                                            <div class="font-weight-bold  mt-1">{{ payment.amount_coin | numberFormat }}</div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <h4>Lịch sử nạp xu</h4>
+                    <p>Lịch sử nạp xu của <span class="note-color">{{user.name != null ? user.name : user.username}}</span> trong 10 lần gần nhất.</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Thời gian</th>
+                                <th>Mã lệnh</th>
+                                <th>Số lượng</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            <tr v-for="(payment, index) in paymentList" :key="index">
+                                <td>{{ payment.created_at | dateFormat }}</td>
+                                <td><router-link :to="{name: 'payment-order', params: { order_code: payment.code } }" class="note-page-payment text-success font-weight-bold p-0">{{ payment.code }}</router-link></td>
+                                <td>{{ payment.amount_coin | numberFormat }}</td>
+                                <td><div class="badge" v-bind:class="[payment.status == 2 ? 'badge-primary' : 'badge-warning']">{{ payment.status | checkStatus }}</div></td>
+                            </tr>
+                        </table>
                     </div>
-                
+                    <div class="float-right">
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>

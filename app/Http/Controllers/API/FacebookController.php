@@ -118,6 +118,18 @@ class FacebookController extends CmnController
         return response()->json(['result' => $orderShare], 200);
     }
 
+    public function GetTotalOrderFacebook(Request $request)
+    {
+        $orders = Facebook::whereDate('created_at', '>=', today())->get();
+        return response()->json(['result' => $orders], 200);
+    }
+
+    public function GetTotalOrderByUserFacebook(Request $request, $user_id)
+    {
+        $orders = Facebook::where('user_id', $user_id)->get();
+        return response()->json(['result' => $orders], 200);
+    }
+
     public function GetOrderCommentFacebook(Request $request, $user_id)
     {
         $orderComment = Facebook::where('user_id', $user_id)->where('type', 'comment')->orderBy('created_at', 'desc')->limit(10)->get();

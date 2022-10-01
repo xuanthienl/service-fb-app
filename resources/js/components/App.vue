@@ -1,12 +1,12 @@
 <template>
     <v-app>
-        <my-navbar :key="getUser"></my-navbar>
-        <div class="container-fluid page-body-wrapper">
-            <!-- <my-settings-panel></my-settings-panel> -->
+        <router-view v-if="$route.name == 'login' || $route.name == 'register'" :key="getUser"></router-view>
+        <div v-else class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+            <my-navbar :key="getUser"></my-navbar>
             <my-sidebar :key="getUser"></my-sidebar>
-            <div class="main-panel">
-                <router-view></router-view>
-                <!-- <my-footer></my-footer> -->
+            <div class="main-content">
+                <router-view :key="getUser"></router-view>
             </div>
             <notifications class="notifications" group="foo"/>
         </div>

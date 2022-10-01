@@ -44,51 +44,59 @@
 		</div>
 		</div>
 
-		<div class="row">
-			<div class="col-12 grid-margin stretch-card">
-				<div class="card">
-					<div class="card-body">
-						<div class="d-flex flex-wrap justify-content-between">
-							<h4 class="card-title mb-3">ĐƠN MUA</h4>
-						</div>
-						<p class="card-description">
-							Lịch sử sử dụng dịch vụ của <span class="note-color">{{user.name != '' ? user.name : user.username}}</span> trong 10 lần gần nhất.
-						</p>
-						<div class="table-responsive">
-							<table class="table">
-								<tbody v-for="(order, index) in orderList" :key="index">
-									<tr>
-										<td>
-											Thời gian
-											<div class="font-weight-bold  mt-1">{{ order.created_at | dateFormat }}</div>
-										</td>
-										<td>
-											Thanh toán
-											<div class="font-weight-bold text-success  mt-1">{{ order.total_payment | currencyFormat }}</div>
-										</td>
-										<td>
-											Trạng thái
-											<div class="font-weight-bold  mt-1" v-bind:style="{color: order.status == 0 ? '#FFCB42' : '#5BB318'}">{{ order.status == 0 ? 'Chờ xử lý' : 'Hoàn thành' }}</div>
-										</td>
-										<td>
-											UID
-											<div class="font-weight-bold  mt-1"><a :href="order.uid" target="_blank">{{ order.uid }}</a></div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				
-				</div>
-			</div>
-		</div>
+		<div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                    <h4>Đơn mua</h4>
+                    <p>Lịch sử sử dụng dịch vụ của <span class="note-color">{{user.name != null ? user.name : user.username}}</span> trong 10 lần gần nhất.</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Thời gian</th>
+                                <th>Thanh Toán</th>
+                                <th>UID</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            <tr v-for="(order, index) in orderList" :key="index">
+                                <td>{{ order.created_at | dateFormat }}</td>
+                                <td>{{ order.total_payment | currencyFormatVND }}</td>
+                                <td><a :href="order.uid" target="_blank">{{ order.uid }}</a></td>
+                                <td><div class="badge" v-bind:class="[order.status == 0 ? 'badge-warning' : 'badge-primary']">{{ order.status == 0 ? 'Chờ xử lý' : 'Hoàn thành' }}</div></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="float-right">
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 		<div class="row">
 			<div class="col-12 grid-margin stretch-card">
 				<div class="card">
 				<div class="card-body">
-					<h4 class="card-title"><i class="fa-solid fa-book"></i>THÔNG TIN CHI TIẾT</h4>
+					<h4 class="card-title">THÔNG TIN CHI TIẾT</h4>
 					<div class="forms-sample" v-for="(channel, index) in channelsList" :key="index">
 						<div class="form-group">
 							<label>Kênh {{ channel.channel_name }}:</label>

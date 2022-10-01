@@ -1,3 +1,11 @@
+/* body {
+  font-size: 0.875rem;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: initial;
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
 #sidebar .nav {
   padding-left: 0px;
 }
@@ -30,7 +38,6 @@
 }
 
 .note-color {
-  /* padding: 5px; */
   color: #ff0000;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -72,11 +79,6 @@
   right: 5px !important;
   top: auto !important;
 }
-/* .vue-notification {
-  background: #f2125e !important;
-  border-left-color: #f2125e !important;
-  border-radius: 4px !important;
-} */
 
 .btn-primary {
   color: #fff;
@@ -86,17 +88,6 @@
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #F7F7F7;
-}
-
-.text-img {
-  font-size: 18px !important;
-  color: #68b0ab !important;
-  font-family: 'Cinzel Decorative', cursive;
-  background: linear-gradient(to left, #68b0ab, #ff7e67) no-repeat !important;
-  color: transparent !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  font-weight: 900 !important;
 }
 
 .text-title {
@@ -111,4 +102,109 @@
   font-weight: 500 !important;
   border-radius: 0px !important;
   padding: 12px !important;
+}
+
+.nav-item.active {
+  background: none !important;
+}
+.sidebar .nav .nav-item.active > .nav-link {
+  color: #1F1F1F !important;
+  position: relative;
+} */
+
+
+body {
+  font-size: 0.875rem;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: initial;
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+}
+.search-element input {
+  border-top-left-radius: 30px !important;
+  border-bottom-left-radius: 30px !important;
+}
+.search-element button {
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+.nav-link {
+  cursor: pointer;
+}
+.nav-link span, .dropdown .dropdown-item-text span, .dropdown .dropdown-item-text i, .search-element ::placeholder {
+  color: #bcc1c6;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 600;
+}
+.text-img {
+  font-size: 15px !important;
+  font-family: 'Cinzel Decorative', cursive;
+  background: linear-gradient(to left, #68b0ab, #ff7e67) no-repeat !important;
+  color: transparent !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  font-weight: 900 !important;
+  text-transform: capitalize !important;
+}
+.card .card-body h4 {
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.notifications {
+  bottom: 5px !important;
+  right: 5px !important;
+  top: auto !important;
+}
+
+.btn {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 600;
+}
+.btn-primary {
+  color: #fff !important;
+  background-color: #6777ef !important;
+  border-color: #6777ef !important;
+
+}
+.btn.disabled, .btn:disabled {
+  opacity: .65 !important;
+}
+.card-statistic-2 .card-stats .card-stats-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.card-statistic-2 .card-wrap .card-header h4, .card-statistic-2 .card-stats .card-stats-item-label {
+  color: #bcc1c6;
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.3px;
+  font-weight: 600;
+}
+.card-statistic-2 .card-icon i {
+  color: #fafdfb;
+}
+
+.card .card-header h4 {
+  color: #bcc1c6;
+  text-transform: uppercase !important;
+  letter-spacing: 1.3px;
+  font-weight: 600;
+}
+.page-user a {
+  cursor: pointer;
+}
+.note-page-payment {
+  padding: 5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  text-decoration: none !important;
+  color: #76838f;
 }

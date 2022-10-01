@@ -1,148 +1,143 @@
 <template>
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-			<router-link :to="{name: 'home'}" class="navbar-brand brand-logo text-img">Supportlive.Az</router-link>
-			<router-link :to="{name: 'home'}" class="navbar-brand brand-logo-mini text-img ml-5">Az</router-link>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-			<!-- <ul class="navbar-nav mr-lg-2">
-				<li class="nav-item  d-none d-lg-flex">
-				<a class="nav-link" href="#">
-					Calendar
-				</a>
-				</li>
-				<li class="nav-item  d-none d-lg-flex">
-				<a class="nav-link active" href="#">
-					Statistic
-				</a>
-				</li>
-				<li class="nav-item  d-none d-lg-flex">
-				<a class="nav-link" href="#">
-					Employee
-				</a>
-				</li>
-			</ul> -->
-			<ul class="navbar-nav navbar-nav-right">
-				<!-- <li class="nav-item d-none d-lg-flex  mr-2">
-					<a class="nav-link" href="#">
-						Help
-					</a>
-				</li>
-				<li class="nav-item dropdown d-flex">
-					<a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
-						<i class="typcn typcn-message-typing"></i>
-						<span class="count bg-success">2</span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-						<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-						<a class="dropdown-item preview-item">
-						<div class="preview-thumbnail">
-							<img src="images/faces/face4.jpg" alt="image" class="profile-pic">
-						</div>
-						<div class="preview-item-content flex-grow">
-							<h6 class="preview-subject ellipsis font-weight-normal">David Grey
-							</h6>
-							<p class="font-weight-light small-text mb-0">
-							The meeting is cancelled
-							</p>
-						</div>
-						</a>
-						<a class="dropdown-item preview-item">
-						<div class="preview-thumbnail">
-							<img src="images/faces/face2.jpg" alt="image" class="profile-pic">
-						</div>
-						<div class="preview-item-content flex-grow">
-							<h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
-							</h6>
-							<p class="font-weight-light small-text mb-0">
-							New product launch
-							</p>
-						</div>
-						</a>
-						<a class="dropdown-item preview-item">
-						<div class="preview-thumbnail">
-							<img src="images/faces/face3.jpg" alt="image" class="profile-pic">
-						</div>
-						<div class="preview-item-content flex-grow">
-							<h6 class="preview-subject ellipsis font-weight-normal"> Johnson
-							</h6>
-							<p class="font-weight-light small-text mb-0">
-							Upcoming board meeting
-							</p>
-						</div>
-						</a>
-					</div>
-				</li>
-				<li class="nav-item dropdown  d-flex">
-					<a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
-						<i class="typcn typcn-bell mr-0"></i>
-						<span class="count bg-danger">2</span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-						<p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-						<a class="dropdown-item preview-item">
-						<div class="preview-thumbnail">
-							<div class="preview-icon bg-success">
-							<i class="typcn typcn-info-large mx-0"></i>
-							</div>
-						</div>
-						<div class="preview-item-content">
-							<h6 class="preview-subject font-weight-normal">Application Error</h6>
-							<p class="font-weight-light small-text mb-0">
-							Just now
-							</p>
-						</div>
-						</a>
-						<a class="dropdown-item preview-item">
-						<div class="preview-thumbnail">
-							<div class="preview-icon bg-warning">
-							<i class="typcn typcn-cog mx-0"></i>
-							</div>
-						</div>
-						<div class="preview-item-content">
-							<h6 class="preview-subject font-weight-normal">Settings</h6>
-							<p class="font-weight-light small-text mb-0">
-							Private message
-							</p>
-						</div>
-						</a>
-						<a class="dropdown-item preview-item">
-						<div class="preview-thumbnail">
-							<div class="preview-icon bg-info">
-							<i class="typcn typcn-user-outline mx-0"></i>
-							</div>
-						</div>
-						<div class="preview-item-content">
-							<h6 class="preview-subject font-weight-normal">New user registration</h6>
-							<p class="font-weight-light small-text mb-0">
-							2 days ago
-							</p>
-						</div>
-						</a>
-					</div>
-				</li> -->
-				<li class="nav-item nav-profile dropdown" v-if="loggedIn">
-					<a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
-						<i class="typcn typcn-user-outline mr-0"></i>
-						<span class="nav-profile-name">{{user.name != null ? user.name : user.username}}</span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-						<router-link :to="{name: 'setting-user', params: { username: user.username } }" class="dropdown-item">
-						<i class="typcn typcn-cog text-primary"></i>
-							Trang cá nhân
-						</router-link>
-						<router-link :to="{name: 'logout'}" class="dropdown-item">
-						<i class="typcn typcn-power text-primary"></i>
-							Đăng xuất
-						</router-link>
-					</div>
-				</li>
+	<nav class="navbar navbar-expand-lg main-navbar">
+		<form class="form-inline mr-auto">
+			<ul class="navbar-nav mr-3">
+				<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+				<li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
 			</ul>
-			<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-				<span class="typcn typcn-th-menu"></span>
-			</button>
-        </div>
-    </nav>
+			<div class="search-element">
+				<input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
+				<button class="btn" type="submit"><i class="fas fa-search"></i></button>
+				<div class="search-backdrop"></div>
+				<div class="search-result">
+					<div class="search-header">
+						Lịch sử tìm kiếm
+					</div>
+					<div class="search-item">
+						<router-link :to="{name: 'buff-share'}">buff share</router-link>
+						<router-link :to="{name: 'buff-share'}" class="search-close"><i class="fas fa-times"></i></router-link>
+					</div>
+					<div class="search-item">
+						<router-link :to="{name: 'buff-comment'}">buff comment</router-link>
+						<router-link :to="{name: 'buff-comment'}" class="search-close"><i class="fas fa-times"></i></router-link>
+					</div>
+
+					<div class="search-header">
+						Kết quả
+					</div>
+					<div class="search-item">
+						<router-link :to="{name: 'buff-share'}">
+							<img class="mr-3 rounded" width="30" src="/template_stisla/dist/assets/img/products/product-2-50.png" alt="product">
+							Buff Share Facebook
+						</router-link>
+					</div>
+					<div class="search-item">
+						<router-link :to="{name: 'buff-comment'}">
+							<img class="mr-3 rounded" width="30" src="/template_stisla/dist/assets/img/products/product-2-50.png" alt="product">
+							Buff Comment Facebook
+						</router-link>
+					</div>
+					
+					<div class="search-header">
+						DỰ ÁN
+					</div>
+					<div class="search-item">
+						<router-link :to="{name: 'home'}">
+							<div class="search-icon bg-danger text-white mr-3">
+								<i class="fas fa-code"></i>
+							</div>
+							SupportLive.Az
+						</router-link>
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<ul class="navbar-nav navbar-right">
+			<li class="dropdown dropdown-list-toggle">
+				<a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle">
+					<i class="far fa-envelope"></i>
+				</a>
+				<!-- <div class="dropdown-menu dropdown-list dropdown-menu-right">
+					<div class="dropdown-header">Messages
+					<div class="float-right">
+						<a href="#">Mark All As Read</a>
+					</div>
+					</div>
+					<div class="dropdown-list-content dropdown-list-message">
+					<a href="#" class="dropdown-item dropdown-item-unread">
+						<div class="dropdown-item-avatar">
+						<img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle">
+						<div class="is-online"></div>
+						</div>
+						<div class="dropdown-item-desc">
+						<b>Kusnaedi</b>
+						<p>Hello, Bro!</p>
+						<div class="time">10 Hours Ago</div>
+						</div>
+					</a>
+					</div>
+					<div class="dropdown-footer text-center">
+					<a href="#">View All <i class="fas fa-chevron-right"></i></a>
+					</div>
+				</div> -->
+			</li>
+
+			<li class="dropdown dropdown-list-toggle">
+				<a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg">
+					<i class="far fa-bell"></i>
+				</a>
+				<!-- <div class="dropdown-menu dropdown-list dropdown-menu-right">
+					<div class="dropdown-header">Notifications
+						<div class="float-right">
+							<a href="#">Mark All As Read</a>
+						</div>
+					</div>
+					<div class="dropdown-list-content dropdown-list-icons">
+						<a href="#" class="dropdown-item dropdown-item-unread">
+							<div class="dropdown-item-icon bg-primary text-white">
+							<i class="fas fa-code"></i>
+							</div>
+							<div class="dropdown-item-desc">
+							Template update is available now!
+							<div class="time text-primary">2 Min Ago</div>
+							</div>
+						</a>
+					</div>
+					<div class="dropdown-footer text-center">
+						<a href="#">View All <i class="fas fa-chevron-right"></i></a>
+					</div>
+				</div> -->
+			</li>
+
+			<li class="dropdown dropdown-list-toggle">
+				<a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg nav-link-user">
+					<img alt="image" src="/template_stisla/dist/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+					<div class="d-sm-none d-lg-inline-block" v-if="loggedIn">Xin chào, {{ user.name !== null ? user.name : user.username }}</div>
+				</a>
+				<div class="dropdown-menu dropdown-list dropdown-menu-right">
+					<div class="dropdown-title">Welcome to Supportlive.Az</div>
+					<router-link :to="{name: 'setting-user', params: { username: user.username } }" class="dropdown-item has-icon d-flex align-items-center dropdown-item-text" v-if="loggedIn">
+						<i class="far fa-user"></i>
+						<span>Trang cá nhân</span>
+					</router-link>
+					<router-link :to="{name: 'logout'}"  class="dropdown-item has-icon d-flex align-items-center dropdown-item-text" v-if="loggedIn">
+						<i class="fas fa-sign-out-alt"></i>
+						<span>Đăng xuất</span>
+					</router-link>
+
+					<router-link :to="{name: 'register'}"  class="dropdown-item has-icon d-flex align-items-center dropdown-item-text" v-if="!loggedIn">
+						<i class="fa-solid fa-user-plus"></i>
+						<span>Đăng ký</span>
+					</router-link>
+					<router-link :to="{name: 'login'}"  class="dropdown-item has-icon d-flex align-items-center dropdown-item-text" v-if="!loggedIn">
+						<i class="fa-solid fa-right-to-bracket"></i>
+						<span>Đăng nhập</span>
+					</router-link>
+				</div>
+			</li>
+		</ul>
+	</nav>
 </template>
 
 <script>
@@ -150,7 +145,6 @@
         data() {
             return {
                 user:this.$store.getters.getUser,
-                tracks: this.$store.getters.getTracks == '' ? '' : this.$store.getters.getTracks,
             }
         },
         computed: {

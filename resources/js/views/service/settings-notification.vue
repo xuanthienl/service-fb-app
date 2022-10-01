@@ -11,12 +11,10 @@
                         <p class="card-description">B2: Chọn hoặc nhập /newbot lệnh và gửi nó. Sau đó hãy làm theo hướng dẫn.</p>
                         <p class="card-description">B3: Thêm bot vừa tạo vào nhóm hoặc kênh Telegram và thăng cấp với tư cách là quản trị viên.</p>
                         <p class="card-description">B4: Nhóm hoặc kênh Telegram trên cần phải đang hoạt động (tương tác) tại thời điểm thiết lập Bot. Hãy add một messages/post nếu quá trình thiết lập chưa thành công.</p>
-                        <form class="forms-sample d-block d-sm-flex" @submit.prevent="telegramBotSetting">
+                        <form class="forms-sample d-block d-sm-flex align-items-center" @submit.prevent="telegramBotSetting">
                             <input type="text" class="form-control mb-2 mr-sm-2" v-model="telegram_bot_token" placeholder="Nhập token HTTP API">
                             <button type="submit" class="btn btn-primary btn-icon-text mb-2 d-flex" :disabled="telegram_bot_token === '' || isSending === true">
-                            <i class="typcn typcn-input-checked btn-icon-prepend"></i>
-                            Lưu
-                            </button>
+                            <i class="typcn typcn-input-checked btn-icon-prepend"></i>Lưu</button>
                         </form>
                     </div>
 

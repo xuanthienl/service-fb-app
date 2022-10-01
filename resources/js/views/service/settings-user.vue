@@ -81,6 +81,7 @@
                 this.users.phone_number = response.data.user.phone_number
                 this.users.address = response.data.user.address != null ? response.data.user.address : ''
                 this.users.coin = response.data.user.coin
+                this.users.roles = response.data.user.roles
             })
             .catch(error => {
                 this.$router.back()
@@ -98,6 +99,7 @@
                     this.users.phone_number = response.data.user.phone_number
                     this.users.address = response.data.user.address != null ? response.data.user.address : ''
                     this.users.coin = response.data.user.coin
+                    this.users.roles = response.data.user.roles
                 })
                 .catch(error => {
                     this.$router.back()

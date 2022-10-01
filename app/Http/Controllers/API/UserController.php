@@ -25,18 +25,18 @@ class UserController extends Controller
     public function login(Request $request) { 
         $validator = Validator::make($request->all(), 
             [
-                'username' => 'alpha_dash|max:255',
-                'email' => 'required|max:255',
-                'password' => 'required',
+                'username'  => 'alpha_dash|max:255',
+                'email'     => 'required|max:255',
+                'password'  => 'required',
             ],
             [
-                'required' => ':attribute cannot be empty.',
-                'alpha_dash' => ':attribute cannot contain spaces.',
+                'required'  => ':attribute không được để trống.',
+                'alpha_dash' => ':attribute không được chứa dấu cách, dấu chấm, ký tự đặc biệt.',
             ], 
             [
-                'username' => 'Username',
-                'email' => 'Email address',
-                'password' => 'Password',
+                'username'  => 'Username',
+                'email'     => 'Email',
+                'password'  => 'Password',
             ]
         );
         if ($validator->fails()) {
@@ -67,32 +67,32 @@ class UserController extends Controller
                         'access_token' => $token
                     ], 200);
                 } else {
-                    return response()->json(['message' => 'Incorrect password.'], 404);
+                    return response()->json(['message' => 'Mật khẩu không đúng.'], 404);
                 }
             } else {
-                return response()->json(['message' => 'Account has deleted.'], 404);
+                return response()->json(['message' => 'Tài khoản đã bị xóa.'], 404);
             }
         } else {
-            return response()->json(['message' => 'Email doesn\'t exists.'], 404);
+            return response()->json(['message' => 'Email không tồn tại.'], 404);
         }
     }
 
     public function register(Request $request) {
         $validator = Validator::make($request->all(), 
             [
-                'username' => 'required|alpha_dash|unique:users|max:255',
-                'email' => 'required|unique:users|max:255',
-                'password' => 'required',
+                'username'  => 'required|alpha_dash|unique:users|max:255',
+                'email'     => 'required|unique:users|max:255',
+                'password'  => 'required',
             ],
             [
-                'required' => ':attribute cannot be empty.',
-                'alpha_dash' => ':attribute cannot contain spaces, dots, special characters.',
-                'unique' => ':attribute has exists.',
+                'required'  => ':attribute không được để trống.',
+                'alpha_dash' => ':attribute không được chứa dấu cách, dấu chấm, ký tự đặc biệt.',
+                'unique'    => ':attribute đã tồn tại.',
             ], 
             [
-                'username' => 'Username',
-                'email' => 'Email address',
-                'password' => 'Password',
+                'username'  => 'Username',
+                'email'     => 'Email',
+                'password'  => 'Password',
             ]
         );
 
@@ -112,9 +112,9 @@ class UserController extends Controller
         if(Auth::user()) {
             $token = $request->user()->token();
             $token->revoke();
-            return response()->json(['message' => 'Logout successful.'], 200);
+            return response()->json(['message' => 'Đăng xuất thành công.'], 200);
         } else {
-            return response()->json(['message' => 'Not logged in.'], 200);
+            return response()->json(['message' => 'Chưa đăng nhập.'], 200);
         }
     }
 
@@ -139,20 +139,20 @@ class UserController extends Controller
 
         $validator = Validator::make($request, 
             [
-                'username' => 'required|alpha_dash|unique:users,username,'.$id.',id,deleted_at,NULL|max:100',
-                'email' => 'required|unique:users,email,'.$id.',id,deleted_at,NULL|max:100',
-                'password' => 'nullable|confirmed|min:6'
+                'username'  => 'required|alpha_dash|unique:users,username,'.$id.',id,deleted_at,NULL|max:100',
+                'email'     => 'required|unique:users,email,'.$id.',id,deleted_at,NULL|max:100',
+                'password'  => 'nullable|confirmed|min:6'
             ],
             [
-                'required' => ':attribute cannot be empty.',
-                'alpha_dash' => ':attribute cannot contain spaces, dots, special characters.',
-                'unique' => ':attribute has exists.',
-                'confirmed' => ':attribute confirmation does not match.'
+                'required'  => ':attribute không được để trống.',
+                'alpha_dash' => ':attribute không được chứa dấu cách, dấu chấm, ký tự đặc biệt.',
+                'unique'    => ':attribute đã tồn tại.',
+                'confirmed' => ':attribute xác nhận không khớp. Hãy nhập lại.'
             ],
             [
-                'username' => 'Username',
-                'email' => 'Email address',
-                'password' => 'Password',
+                'username'  => 'Username',
+                'email'     => 'Email',
+                'password'  => 'Password',
             ]
         );
         if ($validator->fails()) {
@@ -182,7 +182,7 @@ class UserController extends Controller
         	'email' => 'required|email',
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Invalid email'], 404);
+            return response()->json(['message' => 'Email không hợp lệ.'], 404);
         }
         $user = User::where('email', $request->email)->first();
         if($user) {
@@ -194,6 +194,6 @@ class UserController extends Controller
                 'message' => 'success'
             ], 200);
         }
-        return response()->json(['message' => 'Email doesn\'t exists.'], 404);
+        return response()->json(['message' => 'Email không tồn tại.'], 404);
     }
 }

@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col d-flex">
                                 <button class="btn btn-primary" v-on:click="confirmSellPayment()" :disabled="status != '1' || isSending === true">Đã nhận tiền</button>
-                                <button class="btn-cancel" v-on:click="confirmSellPaymentFail()" :disabled="status != '1' || isSending === true">Chưa nhận được tiền</button>
+                                <button class="btn-cancel pl-4" v-on:click="confirmSellPaymentFail()" :disabled="status != '1' || isSending === true">Chưa nhận được tiền</button>
                             </div>
                         </div>
                     </div>

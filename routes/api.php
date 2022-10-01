@@ -49,6 +49,9 @@ Route::prefix('/facebook')->group(function() {
 
     Route::get('buff/{id}/confirm', 'API\FacebookController@GetBuffConfirm');
     Route::post('buff/{id}/confirm', 'API\FacebookController@PostBuffConfirm');
+
+    Route::get('order/total', 'API\FacebookController@GetTotalOrderFacebook');
+    Route::get('order/{user_id}/total', 'API\FacebookController@GetTotalOrderByUserFacebook');
 });
 
 Route::prefix('/payment')->group(function() {

@@ -33,7 +33,7 @@
                         <h4 class="card-title">Cài đặt "Kênh"</h4>
                         <p class="card-description">Các cài đặt này chỉ định thông số <span class="note-color">tên</span>, <span class="note-color">giá</span> và <span class="note-color">thông tin chi tiết</span> để thiết lập danh sách các Kênh. Bạn có thể tạo/chỉnh sửa/xóa.</p>
                         <form class="forms-sample" @submit.prevent="channelSetting">
-                            <select class="form-control mb-2 mr-sm-2 px-5 py-3" v-model="channel_type" >
+                            <select class="form-control mb-2" v-model="channel_type" >
                                 <option value="comment">Buff Comment Facebook</option>
                                 <option value="share">Buff Share Facebook</option>
                             </select>
