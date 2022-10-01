@@ -8,6 +8,7 @@
             <div class="main-content">
                 <router-view :key="getUser"></router-view>
             </div>
+            <my-footer></my-footer>
             <notifications class="notifications" group="foo"/>
         </div>
     </v-app>

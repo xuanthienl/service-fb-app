@@ -1,8 +1,15 @@
 <template>
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © supportlive.az</span>
-            <!-- <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard </a>templates from Bootstrapdash.com</span> -->
+        </div>
+    </footer> -->
+
+    <footer class="main-footer">
+        <div class="footer-left">
+          © Supportlive.Az
+        </div>
+        <div class="footer-right">
         </div>
     </footer>
 </template>
