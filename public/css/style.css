@@ -16,7 +16,7 @@ body {
 .nav-link {
   cursor: pointer;
 }
-.nav-link span, .dropdown .dropdown-item-text span, .dropdown .dropdown-item-text i, .search-element ::placeholder {
+.dropdown .dropdown-item-text span, .dropdown .dropdown-item-text i, .search-element ::placeholder {
   color: #bcc1c6;
   font-size: 10px;
   text-transform: uppercase;
@@ -101,4 +101,12 @@ body {
 
 .main-footer {
   border-top: none !important;
+}
+
+.nav-link span {
+  color: gray;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600 !important;
 }
