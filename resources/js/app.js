@@ -45,6 +45,9 @@ const app = new Vue({
 // RUN SOURCE (PHP 8.0.18 - NODEJS 16.17.0)
 // - composer update
 // - php artisan passport:keys
+// - php artisan migrate
+// - php artisan passport:install
+// - php artisan db:seed
 // - npm install
 // - npm run dev
 
