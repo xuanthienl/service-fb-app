@@ -110,3 +110,7 @@ body {
   letter-spacing: 1px;
   font-weight: 600 !important;
 }
+
+.card-body input, .card-body textarea, .card-body select, .card-body button {
+  border-radius: 8px !important;
+}

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-// vuex
+// Vuex
 import store from "./store";
 
 // File Views
@@ -23,26 +23,26 @@ import SettingNotification from './views/service/settings-notification.vue';
 import SettingPayment from './views/service/settings-payment.vue';
 
 const routes = [
-    { path: '/', name: 'home', component: Home, meta: { title: 'Supportlive.Az'} },
-    { path: '/buff-share', name: 'buff-share', component: BuffShare, meta: { requiresAuth: true }},
-    { path: '/buff-comment', name: 'buff-comment', component: BuffComment, meta: { requiresAuth: true }},
-    { path: '/payment', name: 'payment', component: Payment, meta: { requiresAuth: true }},
-    { path: '/payment/:order_code', name: 'payment-order', component: PaymentOrder, meta: { requiresAuth: true }},
-    { path: '/user/:username/profile', name: 'setting-user', component: SettingUser, meta: { requiresAuth: true }},
-    { path: '/contact', name: 'contact', component: Contact},
+    { path: '/', name: 'home', component: Home, meta: { title: 'Supportlive.Az' }},
+    { path: '/buff-share', name: 'buff-share', component: BuffShare, meta: { requiresAuth: true, title: 'Supportlive.Az | Buff Share Facebook' }},
+    { path: '/buff-comment', name: 'buff-comment', component: BuffComment, meta: { requiresAuth: true, title: 'Supportlive.Az | Buff Comment Facebook' }},
+    { path: '/payment', name: 'payment', component: Payment, meta: { requiresAuth: true, title: 'Supportlive.Az | Payment' }},
+    { path: '/payment/:order_code', name: 'payment-order', component: PaymentOrder, meta: { requiresAuth: true, title: 'Supportlive.Az | Payment Confirm' }},
+    { path: '/user/:username/profile', name: 'setting-user', component: SettingUser, meta: { requiresAuth: true, title: 'Supportlive.Az | Profile' }},
+    { path: '/contact', name: 'contact', component: Contact, meta: { title: 'Supportlive.Az | Contact' }},
 
     // ADMIN
-    { path: '/buff/:id/confirm', name: 'buff-share-or-comment-confirm', component: BuffShareOrCommentConfirm, meta: { requiresAdmin: true }},
-    { path: '/payment/:order_code/confirm', name: 'payment-order-confirm', component: PaymentOrderConfirm, meta: { requiresAdmin: true }},
-    { path: '/settings-facebook', name: 'settings-facebook', component: SettingFacebook, meta: { requiresAdmin: true }},
-    { path: '/settings-notification', name: 'settings-notification', component: SettingNotification, meta: { requiresAdmin: true }},
-    { path: '/settings-payment', name: 'settings-payment', component: SettingPayment, meta: { requiresAdmin: true }},
+    { path: '/buff/:id/confirm', name: 'buff-share-or-comment-confirm', component: BuffShareOrCommentConfirm, meta: { requiresAdmin: true, title: 'Supportlive.Az | Facebook Confirm Buff' }},
+    { path: '/payment/:order_code/confirm', name: 'payment-order-confirm', component: PaymentOrderConfirm, meta: { requiresAdmin: true, title: 'Supportlive.Az | Payment Confirm' }},
+    { path: '/settings-facebook', name: 'settings-facebook', component: SettingFacebook, meta: { requiresAdmin: true, title: 'Supportlive.Az | Facebook Settings' }},
+    { path: '/settings-notification', name: 'settings-notification', component: SettingNotification, meta: { requiresAdmin: true, title: 'Supportlive.Az | Notifications Settings' }},
+    { path: '/settings-payment', name: 'settings-payment', component: SettingPayment, meta: { requiresAdmin: true, title: 'Supportlive.Az | Payment Settings' }},
 
-    { path: '/login', name: 'login', component: LoginUser, meta: { requiresVisitor: true } },
-    { path: '/register', name: 'register', component: RegisterUser, meta: { requiresVisitor: true } },
+    { path: '/login', name: 'login', component: LoginUser, meta: { requiresVisitor: true, title: 'Supportlive.Az | Login' }},
+    { path: '/register', name: 'register', component: RegisterUser, meta: { requiresVisitor: true, title: 'Supportlive.Az | Register' }},
     { path: '/logout', name: 'logout', component: LogoutUser},
 
-    { path: '/:pathMatch(.*)*', redirect: { name: 'home' } }
+    { path: '/:pathMatch(.*)*', redirect: { name: 'home' }}
     //requiresAuth : Nếu chưa Login thì không được truy cập
     //requiresVisitor : Nếu đã Login thì không được truy cập
 ];
@@ -54,7 +54,7 @@ const router = new VueRouter({
 
 // READ TITLE
 router.beforeEach((to, from, next) => {
-    let title = to.meta.title || 'ʟ ᴏ ɴ ᴇ ʟ ʏ';
+    let title = to.meta.title || 'Supportlive.Az';
     document.title = title;
     next();
 
