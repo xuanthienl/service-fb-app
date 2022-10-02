@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Cài đặt "Số lượng"</h4>
                         <p class="card-description">Các cài đặt này chỉ định hai thông số <span class="note-color">nhỏ nhất (min)</span> và <span class="note-color">lớn nhất (max)</span> để thiết lập khoảng giá trị số lượng hợp lệ. Vui lòng nhập, nếu bạn muốn thay đổi.</p>
-                        <form class="forms-sample d-block d-sm-flex" @submit.prevent="amountSetting">
+                        <form class="forms-sample d-block d-sm-flex align-items-center" @submit.prevent="amountSetting">
                             <input type="number" class="form-control mb-2 mr-sm-2" v-model="amount_min" placeholder="Min (example 1000)">
                             <input type="number" class="form-control mb-2 mr-sm-2" v-model="amount_max" placeholder="Max (example 10000)">
                             <button type="submit" class="btn btn-primary btn-icon-text mb-2 d-flex" :disabled="amount_min === '' && amount_max === ''">
@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Cài đặt "Tốc độ"</h4>
                         <p class="card-description">Các cài đặt này chỉ định hai thông số <span class="note-color">nhỏ nhất (min)</span> và <span class="note-color">lớn nhất (max)</span> thể hiện bằng <span class="note-color">giây/lượt</span> để thiết lập khoảng giá trị tốc độ hợp lệ. Vui lòng nhập, nếu bạn muốn thay đổi.</p>
-                        <form class="forms-sample d-block d-sm-flex" @submit.prevent="speedSetting">
+                        <form class="forms-sample d-block d-sm-flex align-items-center" @submit.prevent="speedSetting">
                             <input type="number" class="form-control mb-2 mr-sm-2" v-model="speed_min" placeholder="Min (example 0)">
                             <input type="number" class="form-control mb-2 mr-sm-2" v-model="speed_max" placeholder="Max (example 120)">
                             <button type="submit" class="btn btn-primary btn-icon-text mb-2 d-flex" :disabled="speed_min === '' && speed_max === ''">

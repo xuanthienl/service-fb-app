@@ -16,6 +16,9 @@ const store = new Vuex.Store({
         getUser(state) {
             return state.user
         },
+        getCurrencyCount(state) {
+            return state.user.coin
+        },
         token(state) {
             return state.token
         }

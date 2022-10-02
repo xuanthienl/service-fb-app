@@ -94,7 +94,7 @@ body {
   color: #76838f;
 }
 
-.card, .card .card-stats-title{
+.card, .card .card-stats-title, .card.card-statistic-2 .card-icon {
   border-radius: 10px !important;
   border-color: #fff !important;
 }
