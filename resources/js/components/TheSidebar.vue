@@ -75,7 +75,7 @@
                 <li v-bind:class="[$route.name == 'settings-payment' ? 'active' : '']" v-if="loggedIn && user.roles == '1'">
                     <router-link :to="{name: 'settings-payment'}" class="nav-link">
                         <i class="fa fa-solid fa-cart-shopping"></i>
-                        <span>Phương thức thanh toán</span>
+                        <span>Thanh toán</span>
                     </router-link>
                 </li>
             </ul>    

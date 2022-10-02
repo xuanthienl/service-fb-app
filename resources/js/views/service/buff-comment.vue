@@ -156,9 +156,11 @@
 					if (data['type'] === 'speed') {
                         this.speed_min = data['speed_min']
                         this.speed_max = data['speed_max']
-                        this.speed = this.speed_min
 						for (let i = this.speed_min; i <= this.speed_max; i++) {
 							if (i % 5 === 0) {
+                                if (this.speed == '') {
+                                    this.speed = i
+                                }
 								this.speedList.push(i)
 							}
 						}
