@@ -59,6 +59,14 @@
                     </ul>
                 </li>
 
+                <li class="menu-header" v-if="loggedIn && user.roles == '1'">Quản lý</li>
+                <li v-bind:class="[$route.name == 'settings-facebook' ? 'active' : '']" v-if="loggedIn && user.roles == '1'">
+                    <router-link :to="{name: 'settings-facebook'}" class="nav-link">
+                        <i class="fa fa-solid fa-house-user"></i>
+                        <span>Users</span>
+                    </router-link>
+                </li>
+
                 <li class="menu-header" v-if="loggedIn && user.roles == '1'">Cài đặt</li>
                 <li v-bind:class="[$route.name == 'settings-facebook' ? 'active' : '']" v-if="loggedIn && user.roles == '1'">
                     <router-link :to="{name: 'settings-facebook'}" class="nav-link">
