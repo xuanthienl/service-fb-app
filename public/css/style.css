@@ -114,3 +114,7 @@ body {
 .card-body input, .card-body textarea, .card-body select, .card-body button {
   border-radius: 8px !important;
 }
+
+.card-body .table-responsive {
+  border-radius: 10px !important;
+}

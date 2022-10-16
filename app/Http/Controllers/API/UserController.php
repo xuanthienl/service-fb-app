@@ -22,6 +22,12 @@ use GuzzleHttp\Cookie\CookieJar;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::paginate(10);
+        return response()->json(['result' => $users], 200);
+    }
+
     public function login(Request $request) { 
         $validator = Validator::make($request->all(), 
             [
@@ -139,7 +145,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request, 
             [
-                'username'  => 'required|alpha_dash|unique:users,username,'.$id.',id,deleted_at,NULL|max:100',
+                //'username'  => 'required|alpha_dash|unique:users,username,'.$id.',id,deleted_at,NULL|max:100',
                 'email'     => 'required|unique:users,email,'.$id.',id,deleted_at,NULL|max:100',
                 'password'  => 'nullable|confirmed|min:6'
             ],
@@ -160,7 +166,7 @@ class UserController extends Controller
         }
 
         $user->name = $request['name'];
-        $user->username = trim($request['username']);
+        //$user->username = trim($request['username']);
         $user->email = $request['email'];
         $user->address = $request['address'];
         $user->phone_number = $request['phone_number'];
@@ -195,5 +201,11 @@ class UserController extends Controller
             ], 200);
         }
         return response()->json(['message' => 'Email không tồn tại.'], 404);
+    }
+
+    public function searchUser(Request $request)
+    {
+        $user = User::where('username', $request->key)->orWhere('email', $request->key)->orWhere('phone_number', $request->key)->orWhere('name', $request->key)->first();
+        return response()->json(['result' => $user], 200);
     }
 }

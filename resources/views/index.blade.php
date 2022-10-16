@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>ʟ ᴏ ɴ ᴇ ʟ ʏ</title>
+		<title>Supportlive.Az</title>
 		<link rel="stylesheet" href="/css/app.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="shortcut icon" href="/logo.ico">
@@ -48,11 +48,11 @@
 		<script src="/template_stisla/dist/assets/modules/moment.min.js"></script>
 		<script src="/template_stisla/dist/assets/js/stisla.js"></script>
 		<!-- JS Libraies -->
-		<script src="/template_stisla/dist/assets/modules/jquery.sparkline.min.js"></script>
+		{{-- <script src="/template_stisla/dist/assets/modules/jquery.sparkline.min.js"></script>
 		<script src="/template_stisla/dist/assets/modules/chart.min.js"></script>
 		<script src="/template_stisla/dist/assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
 		<script src="/template_stisla/dist/assets/modules/summernote/summernote-bs4.js"></script>
-		<script src="/template_stisla/dist/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+		<script src="/template_stisla/dist/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script> --}}
 		<!-- Page Specific JS File -->
 		<script src="/template_stisla/dist/assets/js/page/index.js"></script>
 		<!-- Template JS File -->

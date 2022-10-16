@@ -18,11 +18,13 @@ import PaymentOrder from './views/service/payment-order.vue';
 import PaymentOrderConfirm from './views/service/payment-order-confirm.vue';
 import Contact from './views/service/contact.vue';
 import SettingUser from './views/service/settings-user.vue';
+import ManageUser from './views/service/manage-user.vue';
 import SettingFacebook from './views/service/settings-facebook.vue';
 import SettingNotification from './views/service/settings-notification.vue';
 import SettingPayment from './views/service/settings-payment.vue';
 
 const routes = [
+    // Service & Home
     { path: '/', name: 'home', component: Home, meta: { title: 'Supportlive.Az' }},
     { path: '/buff-share', name: 'buff-share', component: BuffShare, meta: { requiresAuth: true, title: 'Supportlive.Az | Buff Share Facebook' }},
     { path: '/buff-comment', name: 'buff-comment', component: BuffComment, meta: { requiresAuth: true, title: 'Supportlive.Az | Buff Comment Facebook' }},
@@ -31,13 +33,17 @@ const routes = [
     { path: '/user/:username/profile', name: 'setting-user', component: SettingUser, meta: { requiresAuth: true, title: 'Supportlive.Az | Profile' }},
     { path: '/contact', name: 'contact', component: Contact, meta: { title: 'Supportlive.Az | Contact' }},
 
-    // ADMIN
+    // Admin
     { path: '/buff/:id/confirm', name: 'buff-share-or-comment-confirm', component: BuffShareOrCommentConfirm, meta: { requiresAdmin: true, title: 'Supportlive.Az | Facebook Confirm Buff' }},
     { path: '/payment/:order_code/confirm', name: 'payment-order-confirm', component: PaymentOrderConfirm, meta: { requiresAdmin: true, title: 'Supportlive.Az | Payment Confirm' }},
+    
+    { path: '/manage-user', name: 'manage-user', component: ManageUser, meta: { requiresAdmin: true, title: 'Supportlive.Az | Manage User' }},
+
     { path: '/settings-facebook', name: 'settings-facebook', component: SettingFacebook, meta: { requiresAdmin: true, title: 'Supportlive.Az | Facebook Settings' }},
     { path: '/settings-notification', name: 'settings-notification', component: SettingNotification, meta: { requiresAdmin: true, title: 'Supportlive.Az | Notifications Settings' }},
     { path: '/settings-payment', name: 'settings-payment', component: SettingPayment, meta: { requiresAdmin: true, title: 'Supportlive.Az | Payment Settings' }},
 
+    // User
     { path: '/login', name: 'login', component: LoginUser, meta: { requiresVisitor: true, title: 'Supportlive.Az | Login' }},
     { path: '/register', name: 'register', component: RegisterUser, meta: { requiresVisitor: true, title: 'Supportlive.Az | Register' }},
     { path: '/logout', name: 'logout', component: LogoutUser},

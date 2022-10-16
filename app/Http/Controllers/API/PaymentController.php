@@ -134,4 +134,23 @@ class PaymentController extends CmnController
         $payment->save();
         return response()->json(['message' => 'Bạn đã xác nhận chưa nhận tiền.'], 200);
     }
+
+    public function PostAddOrSubCurrency(Request $request)
+    {
+        $user = User::find($request->user_id);
+        if ($user !== null) {
+            if ($request->action_option == 'add') {
+                $user->coin = (int) $user->coin + (int) $request->currency;
+            } else {
+                $user->coin = (int) $user->coin - (int) $request->currency;
+                if ($user->coin <= 0) {
+                    $user->coin = 0;
+                }
+            }
+            $user->save();
+
+            return response()->json(['result' => $user->coin], 200);
+        }
+        return response()->json(['result' => false], 200);
+    }
 }

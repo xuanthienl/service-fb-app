@@ -22,9 +22,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function posts() {
-        return $this->hasMany('App\Posts', 'user_id');
-    }
     public function facebook() {
         return $this->hasMany('App\Facebook', 'user_id');
     }

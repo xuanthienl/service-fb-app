@@ -146,7 +146,6 @@
                     currency: this.currency_vnd
                 })
                 .then((response) => {
-                    console.log(response)
                     this.isSending = false
                     this.$router.push({ name: 'payment-order', params: { order_code: response.data.result } })
                 })

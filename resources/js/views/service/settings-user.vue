@@ -10,7 +10,7 @@
                                 <input class="form-control" type="text" v-model="users.name"  placeholder="your name.">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="text" v-model="users.username" placeholder="your username.">
+                                <input class="form-control" type="text" v-model="users.username" placeholder="your username." :disabled="true">
                             </div>
                             <div class="form-group">
                                 <input class="form-control" type="text" v-model="users.email" placeholder="your email.">
