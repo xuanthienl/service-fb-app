@@ -1,7 +1,7 @@
 <template>
     <footer class="main-footer">
         <div class="footer-left">
-          © SupportLive.Me
+          © SupportLive | levando.com
         </div>
         <div class="footer-right">
         </div>

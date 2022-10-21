@@ -19,3 +19,7 @@ Route::get('/{any}', function () {
         'user' => Auth::user()
     ]);
 })->where('any', '.*');
+
+Route::get('/clear-cache', function () {
+    $exitCode = Artisan::call('cache:clear');
+});
