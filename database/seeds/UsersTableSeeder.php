@@ -15,14 +15,14 @@ class UsersTableSeeder extends Seeder
             [
                 'username'  => "admin",
                 'name'      => "Xanh™",
-                'email'     => 'admin@supportlive.az',
+                'email'     => 'admin@supportlive.me',
                 'roles'     => '1',
                 'password'  =>  bcrypt('0398140111a'),
             ],
             [
                 'username'  => "admin1",
                 'name'      => "black Red™",
-                'email'     => 'admin1@supportlive.az',
+                'email'     => 'admin1@supportlive.me',
                 'roles'     => '1',
                 'password'  =>  bcrypt('0357789143a'),
             ],

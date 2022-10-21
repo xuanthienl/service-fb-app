@@ -48,7 +48,7 @@
     export default {
         metaInfo () {
             return {
-                title: this.users.name != '' ? this.users.name + ' (@' + this.users.username + ') / Supportlive.Az' : '@'+this.users.username + ' / ʟ ᴏ ɴ ᴇ ʟ ʏ',
+                title: this.users.name != '' ? this.users.name + ' (@' + this.users.username + ') / SupportLive.Me' : '@'+this.users.username + ' / ʟ ᴏ ɴ ᴇ ʟ ʏ',
             }
         },
         data() {

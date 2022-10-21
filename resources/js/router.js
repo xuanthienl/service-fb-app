@@ -25,27 +25,27 @@ import SettingPayment from './views/service/settings-payment.vue';
 
 const routes = [
     // Service & Home
-    { path: '/', name: 'home', component: Home, meta: { title: 'Supportlive.Az' }},
-    { path: '/buff-share', name: 'buff-share', component: BuffShare, meta: { requiresAuth: true, title: 'Supportlive.Az | Buff Share Facebook' }},
-    { path: '/buff-comment', name: 'buff-comment', component: BuffComment, meta: { requiresAuth: true, title: 'Supportlive.Az | Buff Comment Facebook' }},
-    { path: '/payment', name: 'payment', component: Payment, meta: { requiresAuth: true, title: 'Supportlive.Az | Payment' }},
-    { path: '/payment/:order_code', name: 'payment-order', component: PaymentOrder, meta: { requiresAuth: true, title: 'Supportlive.Az | Payment Confirm' }},
-    { path: '/user/:username/profile', name: 'setting-user', component: SettingUser, meta: { requiresAuth: true, title: 'Supportlive.Az | Profile' }},
-    { path: '/contact', name: 'contact', component: Contact, meta: { title: 'Supportlive.Az | Contact' }},
+    { path: '/', name: 'home', component: Home, meta: { title: 'SupportLive.Me' }},
+    { path: '/buff-share', name: 'buff-share', component: BuffShare, meta: { requiresAuth: true, title: 'SupportLive.Me | Buff Share Facebook' }},
+    { path: '/buff-comment', name: 'buff-comment', component: BuffComment, meta: { requiresAuth: true, title: 'SupportLive.Me | Buff Comment Facebook' }},
+    { path: '/payment', name: 'payment', component: Payment, meta: { requiresAuth: true, title: 'SupportLive.Me | Payment' }},
+    { path: '/payment/:order_code', name: 'payment-order', component: PaymentOrder, meta: { requiresAuth: true, title: 'SupportLive.Me | Payment Confirm' }},
+    { path: '/user/:username/profile', name: 'setting-user', component: SettingUser, meta: { requiresAuth: true, title: 'SupportLive.Me | Profile' }},
+    { path: '/contact', name: 'contact', component: Contact, meta: { title: 'SupportLive.Me | Contact' }},
 
     // Admin
-    { path: '/buff/:id/confirm', name: 'buff-share-or-comment-confirm', component: BuffShareOrCommentConfirm, meta: { requiresAdmin: true, title: 'Supportlive.Az | Facebook Confirm Buff' }},
-    { path: '/payment/:order_code/confirm', name: 'payment-order-confirm', component: PaymentOrderConfirm, meta: { requiresAdmin: true, title: 'Supportlive.Az | Payment Confirm' }},
+    { path: '/buff/:id/confirm', name: 'buff-share-or-comment-confirm', component: BuffShareOrCommentConfirm, meta: { requiresAdmin: true, title: 'SupportLive.Me | Facebook Confirm Buff' }},
+    { path: '/payment/:order_code/confirm', name: 'payment-order-confirm', component: PaymentOrderConfirm, meta: { requiresAdmin: true, title: 'SupportLive.Me | Payment Confirm' }},
     
-    { path: '/manage-user', name: 'manage-user', component: ManageUser, meta: { requiresAdmin: true, title: 'Supportlive.Az | Manage User' }},
+    { path: '/manage-user', name: 'manage-user', component: ManageUser, meta: { requiresAdmin: true, title: 'SupportLive.Me | Manage User' }},
 
-    { path: '/settings-facebook', name: 'settings-facebook', component: SettingFacebook, meta: { requiresAdmin: true, title: 'Supportlive.Az | Facebook Settings' }},
-    { path: '/settings-notification', name: 'settings-notification', component: SettingNotification, meta: { requiresAdmin: true, title: 'Supportlive.Az | Notifications Settings' }},
-    { path: '/settings-payment', name: 'settings-payment', component: SettingPayment, meta: { requiresAdmin: true, title: 'Supportlive.Az | Payment Settings' }},
+    { path: '/settings-facebook', name: 'settings-facebook', component: SettingFacebook, meta: { requiresAdmin: true, title: 'SupportLive.Me | Facebook Settings' }},
+    { path: '/settings-notification', name: 'settings-notification', component: SettingNotification, meta: { requiresAdmin: true, title: 'SupportLive.Me | Notifications Settings' }},
+    { path: '/settings-payment', name: 'settings-payment', component: SettingPayment, meta: { requiresAdmin: true, title: 'SupportLive.Me | Payment Settings' }},
 
     // User
-    { path: '/login', name: 'login', component: LoginUser, meta: { requiresVisitor: true, title: 'Supportlive.Az | Login' }},
-    { path: '/register', name: 'register', component: RegisterUser, meta: { requiresVisitor: true, title: 'Supportlive.Az | Register' }},
+    { path: '/login', name: 'login', component: LoginUser, meta: { requiresVisitor: true, title: 'SupportLive.Me | Login' }},
+    { path: '/register', name: 'register', component: RegisterUser, meta: { requiresVisitor: true, title: 'SupportLive.Me | Register' }},
     { path: '/logout', name: 'logout', component: LogoutUser},
 
     { path: '/:pathMatch(.*)*', redirect: { name: 'home' }}
@@ -60,7 +60,7 @@ const router = new VueRouter({
 
 // READ TITLE
 router.beforeEach((to, from, next) => {
-    let title = to.meta.title || 'Supportlive.Az';
+    let title = to.meta.title || 'SupportLive.Me';
     document.title = title;
     next();
 

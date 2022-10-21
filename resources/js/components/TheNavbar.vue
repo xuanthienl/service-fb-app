@@ -46,7 +46,7 @@
 							<div class="search-icon bg-danger text-white mr-3">
 								<i class="fas fa-code"></i>
 							</div>
-							SupportLive.Az
+							SupportLive.Me
 						</router-link>
 					</div>
 				</div>
@@ -116,7 +116,7 @@
 					<div class="d-sm-none d-lg-inline-block" v-if="loggedIn">Xin chào, {{ user.name !== null ? user.name : user.username }}</div>
 				</a>
 				<div class="dropdown-menu dropdown-list dropdown-menu-right">
-					<div class="dropdown-title">Welcome to Supportlive.Az</div>
+					<div class="dropdown-title">Welcome to SupportLive.Me</div>
 					<router-link :to="{name: 'setting-user', params: { username: user.username } }" class="dropdown-item has-icon d-flex align-items-center dropdown-item-text" v-if="loggedIn">
 						<i class="far fa-user"></i>
 						<span>Trang cá nhân</span>

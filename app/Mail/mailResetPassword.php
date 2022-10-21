@@ -32,6 +32,6 @@ class mailResetPassword extends Mailable
         return $this->view('reset_password')->with([
             'username' => $this->username,
             'password' =>  $this->password
-        ])->subject('【Supportlive.Az】Cấp lại mật khẩu mới');
+        ])->subject('【SupportLive.Me】Cấp lại mật khẩu mới');
     }
 }
