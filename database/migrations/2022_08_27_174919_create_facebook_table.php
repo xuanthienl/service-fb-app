@@ -22,6 +22,7 @@ class CreateFacebookTable extends Migration
             $table->string('channel')->nullable();
             $table->string('amount', 10)->default(0);
             $table->string('speed', 10)->nullable();
+            $table->string('minutes', 10)->nullable();
             $table->mediumText('content')->nullable();
             $table->string('image', 255)->nullable();
             $table->string('total_payment', 255)->default(0);

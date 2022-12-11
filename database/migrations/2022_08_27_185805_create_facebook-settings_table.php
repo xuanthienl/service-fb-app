@@ -22,6 +22,8 @@ class CreateFacebookSettingsTable extends Migration
             $table->mediumText('channel_description')->nullable();
             $table->string('amount_min')->nullable();
             $table->string('amount_max')->nullable();
+            $table->string('minutes_min')->nullable();
+            $table->string('minutes_max')->nullable();
             $table->string('speed_min')->nullable();
             $table->string('speed_max')->nullable();
             $table->timestamps();

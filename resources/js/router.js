@@ -12,6 +12,7 @@ import LogoutUser from './views/user/LogoutUser.vue';
 import Home from './views/service/main.vue';
 import BuffShare from './views/service/buff-share.vue';
 import BuffComment from './views/service/buff-comment.vue';
+import Buff from './views/service/buff.vue';
 import BuffShareOrCommentConfirm from './views/service/buff-confirm.vue';
 import Payment from './views/service/payment.vue';
 import PaymentOrder from './views/service/payment-order.vue';
@@ -26,8 +27,12 @@ import SettingPayment from './views/service/settings-payment.vue';
 const routes = [
     // Service & Home
     { path: '/', name: 'home', component: Home, meta: { title: 'SupportLive' }},
-    { path: '/buff-share', name: 'buff-share', component: BuffShare, meta: { requiresAuth: true, title: 'SupportLive | Buff Share Facebook' }},
-    { path: '/buff-comment', name: 'buff-comment', component: BuffComment, meta: { requiresAuth: true, title: 'SupportLive | Buff Comment Facebook' }},
+
+    { path: '/buff', name: 'buff-share', component: BuffShare, meta: { requiresAuth: true, title: 'SupportLive | Facebook Buff Share' }},
+    { path: '/buff', name: 'buff-comment', component: BuffComment, meta: { requiresAuth: true, title: 'SupportLive | Facebook Buff Comment' }},
+    // Buff Like, View, Live
+    { path: '/buff', name: 'buff', component: Buff, meta: { requiresAuth: true, title: 'SupportLive | Facebook Buff Service' }},
+
     { path: '/payment', name: 'payment', component: Payment, meta: { requiresAuth: true, title: 'SupportLive | Payment' }},
     { path: '/payment/:order_code', name: 'payment-order', component: PaymentOrder, meta: { requiresAuth: true, title: 'SupportLive | Payment Confirm' }},
     { path: '/user/:username/profile', name: 'setting-user', component: SettingUser, meta: { requiresAuth: true, title: 'SupportLive | Profile' }},
@@ -58,13 +63,26 @@ const router = new VueRouter({
     routes
 });
 
+window.popStateDetected = false
+window.addEventListener('popstate', () => {
+  window.popStateDetected = true
+})
+
 // READ TITLE
 router.beforeEach((to, from, next) => {
     let title = to.meta.title || 'SupportLive';
     document.title = title;
     next();
 
-    if (to.meta.requiresAuth) {
+    const isBackButton = window.popStateDetected
+    window.popStateDetected = false
+
+    if (isBackButton) {
+        next({
+            name: 'home',
+        })
+        window.location.reload()
+    } else if (to.meta.requiresAuth) {
         if (!store.getters.loggedIn) {
             next({
                 name: 'login',

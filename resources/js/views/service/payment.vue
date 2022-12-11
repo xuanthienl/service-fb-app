@@ -16,8 +16,9 @@
                                     <p class="card-description">- Chuyển khoản 24/7</p>
                                     <p class="card-description">- Ghi đúng nội dung chuyển khoản</p>
                                     <p class="card-description">- Khi thanh toán hoàn thành sẽ nhận xu sau 1 đến 30 phút</p>
-                                    <p class="card-description">- Nếu thao tác sai hoặc không nhận được xu vui lòng liên hệ <router-link :to="{name: 'contact'}" class="note-page-payment p-0">Trợ giúp & hỗ trợ</router-link></p>
+                                    <p class="card-description">- Nếu thao tác sai hoặc không nhận được xu vui lòng liên hệ <router-link :to="{name: 'contact'}" class="note-page-payment p-0">Trợ giúp & hỗ trợ</router-link> hoặc số Zalo <span class="note-page-payment p-0">0398140111</span></p>
                                     <p class="card-description">- Nhấn F5 nếu sau 30 phút chưa nhận được xu</p>
+                                    <p class="card-description">- Sau khi chuyển tiền, nhấp vào nút <span class="note-page-payment p-0">"Đã chuyển tiền"</span></p>
                                 </div>
 
                                 <div class="col-md-6">

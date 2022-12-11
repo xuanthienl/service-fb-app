@@ -60,6 +60,30 @@ class FacebookController extends CmnController
                 }
             }
 
+            if ($request->type === 'minutes') {
+                if ($request->minutes_min !== null || $request->minutes_max !== null) {
+                    if ($request->minutes_min !== null && $request->minutes_max !== null && (int)$request->minutes_min >= (int)$request->minutes_max) {
+                        return response()->json(['message' => 'Giá trị đầu vào không hợp lệ.'], 200);
+                    }
+                    $amount = FacebookSettings::where('type', $request->type)->first();
+                    if ($amount === null) {
+                        $settings->minutes_min = $request->minutes_min;
+                        $settings->minutes_max = $request->minutes_max;
+                        $settings->type = $request->type;
+                        $settings->save();
+                    } else {
+                        $updateAmount = FacebookSettings::find($amount->id);
+                        if ($request->minutes_min !== '') {
+                            $updateAmount->minutes_min = $request->minutes_min;
+                        }
+                        if ($request->minutes_max !== '') {
+                            $updateAmount->minutes_max = $request->minutes_max;
+                        }
+                        $updateAmount->save();
+                    }
+                }
+            }
+
             if ($request->type === 'speed') {
                 if ($request->speed_min !== null || $request->speed_max !== null) {
                     if ($request->speed_min !== null && $request->speed_max !== null && (int)$request->speed_min >= (int)$request->speed_max) {
@@ -306,14 +330,141 @@ class FacebookController extends CmnController
         ], 200);
     }
 
-    public function ValidateBuff(Request $request)
+    /**
+     * check isset and is empty
+     */
+    private function IsEmpty($sStr)
     {
-        $validator = Validator::make($request->all(), 
-            [
+        if ($sStr === null || $sStr === '') {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * get List buff facebook
+     */
+    public function GetListBuffFacebook(Request $request, $user_id, $buff_type)
+    {
+        $aListBuff = Facebook::where('user_id', $user_id)->where('type', $buff_type)->orderBy('created_at', 'desc')->limit(10)->get();
+        return response()->json(['result' => $aListBuff], 200);
+    }
+
+    /**
+     * buff facebook
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function PostBuffFacebook(Request $request)
+    {
+        try {
+            $aRules = array(
                 'uid'       => 'required|max:255',
                 'channel'   => 'required|max:255',
                 'amount'    => 'required|max:10',
-            ],
+            );
+            if ($request->type === 'like' || $request->type === 'view') {
+                unset($aRules['channel']);
+            } elseif ($request->type === 'live') {
+                unset($aRules['channel']);
+                $aRules['minutes'] = 'required';
+            }
+
+            $resultValidate = $this->ValidateBuff($request, $aRules);
+            if ($resultValidate !== true) {
+                return $resultValidate;
+            }
+
+            $oChannel = FacebookSettings::where('type', 'channel')->where('channel_type', $request->type)->where('id', $request->channel)->first();
+            $sTotalPayment = (int)$oChannel->channel_price * (int)$request->amount * (int)$request->minutes;
+
+            $sAccountBalance = $this->accountBalance($request->user_id, $sTotalPayment);
+            if ($sAccountBalance === false) {
+                return response()->json([
+                    'result'    => false,
+                    'message'   => 'Số dư tài khoản của bạn không đủ. Vui lòng nạp thêm Xu!'
+                ], 200);
+            }
+
+            $sServicePayment = $this->servicePayment($request->user_id, $sTotalPayment);
+            if ($sServicePayment === false) {
+                return response()->json([
+                    'result'    => false,
+                    'message'   => 'Thất bại'
+                ], 200);
+            }
+
+            $oBuff = new Facebook;
+            $oBuff->user_id         = $request->user_id;
+            $oBuff->uid             = $request->uid;
+            $oBuff->type            = $request->type;
+            $oBuff->status          = 0;
+            if ($this->IsEmpty($request->minutes) === false) {
+                $oBuff->minutes     = $request->minutes;
+                $sMsgMinutes =  "\n" . 
+                                "- Số phút: $oBuff->minutes";
+            }
+            $oBuff->channel         = $oChannel->channel_name;
+            $oBuff->amount          = $request->amount;
+            $oBuff->total_payment   = $sTotalPayment;
+            $oBuff->save();
+
+            $oUser = User::find($request->user_id);
+            $sUserName = is_null($oUser->name) === true ? $oUser->username : $oUser->name;
+
+            // Send Notification
+            $sMsg = "<b>🔥 Buff Like</b>" .
+            "\n" . 
+            "\n" . 
+            "User $sUserName vừa tạo đơn sử dụng dịch vụ tăng $oBuff->type cho post/video/... Facebook." .
+            "\n" . 
+            "\n" . 
+            "- UID: $oBuff->uid" .
+            "\n" . 
+            "- Số lượng: $oBuff->amount" .
+            $sMsgMinutes .
+            "\n" . 
+            "- Giá: " . number_format($oBuff->total_payment, 0, ',', '.') . "đ" .
+            "\n" . 
+            "- URL: <a href='" . url('buff/' . $oBuff->id . '/confirm') ."'>Xác nhận</a>" .
+            "\n" . 
+            "- Thời gian: " . date('Y/m/d H:i') .
+            "\n" . 
+            "\n" . 
+            "<i>Hãy hoàn thành và xác nhận cho người dùng.</i>";
+            $this->telegramSendMessage($sMsg);
+
+        } catch(Exception $e) {
+            return response()->json([
+                'result'    => false,
+                'message'   => 'Đã có một lỗi xảy ra. Vui lòng thử lại.',
+                'error'     => $e->getMessage()
+            ], 200);
+        }
+
+        return response()->json([
+            'result'    => true,
+            'message'   => 'Thành công'
+        ], 200);
+    }
+
+    /**
+     * Validate Buff
+     */
+    public function ValidateBuff(Request $request, $aRules = array())
+    {
+        $aRulesValidator = array(
+            'uid'       => 'required|max:255',
+            'channel'   => 'required|max:255',
+            'amount'    => 'required|max:10',
+        );
+        if (count($aRules) > 0) {
+            $aRulesValidator = $aRules;
+        }
+
+        $validator = Validator::make($request->all(), 
+            $aRulesValidator,
             [
                 'required'  => 'Giá trị đầu vào của :attribute không hợp lệ.',
                 'max'       => 'Giá trị đầu vào của :attribute không hợp lệ.',

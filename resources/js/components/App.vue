@@ -6,7 +6,7 @@
             <my-navbar :key="getUser"></my-navbar>
             <my-sidebar :key="getCurrencyCount"></my-sidebar>
             <div class="main-content">
-                <router-view :key="getUser"></router-view>
+                <router-view :key="$route.fullPath"></router-view>
             </div>
             <my-footer></my-footer>
             <notifications class="notifications" group="foo"/>
@@ -16,9 +16,7 @@
 <script>
     export default {
         data() {
-            return {
-                user: this.$store.getters.getUser
-            }
+            return {}
         },
         mounted() {
             this.$store.dispatch('loadCurrency')

@@ -50,6 +50,9 @@ Route::prefix('/facebook')->group(function() {
     Route::get('order-comment/{user_id}', 'API\FacebookController@GetOrderCommentFacebook');
     Route::post('buff-comment', 'API\FacebookController@BuffComment');
 
+    Route::get('order/{user_id}/{buff_type}', 'API\FacebookController@GetListBuffFacebook');
+    Route::post('buff', 'API\FacebookController@PostBuffFacebook');
+
     Route::get('buff/{id}/confirm', 'API\FacebookController@GetBuffConfirm');
     Route::post('buff/{id}/confirm', 'API\FacebookController@PostBuffConfirm');
 

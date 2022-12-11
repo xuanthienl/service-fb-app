@@ -17,6 +17,19 @@
                     </div>
 
                     <div class="card-body">
+                        <h4 class="card-title">Cài đặt "Số phút"</h4>
+                        <p class="card-description">Các cài đặt này chỉ định hai thông số <span class="note-color">nhỏ nhất (min)</span> và <span class="note-color">lớn nhất (max)</span> để thiết lập khoảng giá trị số phút duy trì xem live hợp lệ. Vui lòng nhập, nếu bạn muốn thay đổi.</p>
+                        <form class="forms-sample d-block d-sm-flex align-items-center" @submit.prevent="minutesSetting">
+                            <input type="number" class="form-control mb-2 mr-sm-2" v-model="minutes_min" placeholder="Min (example 1000)">
+                            <input type="number" class="form-control mb-2 mr-sm-2" v-model="minutes_max" placeholder="Max (example 10000)">
+                            <button type="submit" class="btn btn-primary btn-icon-text mb-2 d-flex" :disabled="minutes_min === '' && minutes_max === ''">
+                            <i class="typcn typcn-input-checked btn-icon-prepend"></i>
+                            Lưu
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="card-body">
                         <h4 class="card-title">Cài đặt "Tốc độ"</h4>
                         <p class="card-description">Các cài đặt này chỉ định hai thông số <span class="note-color">nhỏ nhất (min)</span> và <span class="note-color">lớn nhất (max)</span> thể hiện bằng <span class="note-color">giây/lượt</span> để thiết lập khoảng giá trị tốc độ hợp lệ. Vui lòng nhập, nếu bạn muốn thay đổi.</p>
                         <form class="forms-sample d-block d-sm-flex align-items-center" @submit.prevent="speedSetting">
@@ -36,6 +49,9 @@
                             <select class="form-control mb-2" v-model="channel_type" >
                                 <option value="comment">Buff Comment Facebook</option>
                                 <option value="share">Buff Share Facebook</option>
+                                <option value="view">Buff View Facebook</option>
+                                <option value="like">Buff Like Facebook</option>
+                                <option value="live">Buff Mắt Facebook</option>
                             </select>
                             <input type="text" class="form-control mb-2 mr-sm-2" v-model="channel_name" placeholder="Tên">
                             <input type="text" class="form-control mb-2 mr-sm-2" v-model="channel_price" placeholder="Giá">
@@ -65,7 +81,7 @@
                                 <tbody v-for="(channel, index) in items" :key="index">
                                     <tr>
                                         <td>{{ channel.channel_name }}</td>
-                                        <td>{{ channel.channel_type === 'share' ? 'Buff Share Facebook' : 'Buff Comment Facebook' }}</td>
+                                        <td class="text-capitalize">{{ 'Buff ' + channel.channel_type + ' Facebook'}}</td>
                                         <td>{{ channel.channel_price }}</td>
                                         <td style="white-space: pre-wrap; line-height: 2;">{{ channel.channel_description }}</td>
                                         <td>
@@ -96,6 +112,8 @@
                 channel_list: [],
                 amount_min:'',
                 amount_max:'',
+                minutes_min:'',
+                minutes_max:'',
                 speed_min:'',
                 speed_max:'',
             }
@@ -111,6 +129,10 @@
                     if (data['type'] === 'amount') {
                         this.amount_min = data['amount_min']
                         this.amount_max = data['amount_max']
+                    }
+                    if (data['type'] === 'minutes') {
+                        this.minutes_min = data['minutes_min']
+                        this.minutes_max = data['minutes_max']
                     }
                     if (data['type'] === 'speed') {
                         this.speed_min = data['speed_min']
@@ -135,6 +157,26 @@
                     amount_min: this.amount_min,
                     amount_max: this.amount_max,
                     type: 'amount'
+                })
+                .then((response) => {
+                    this.$notify({
+                        group: 'foo',
+                        title: response.data.message,
+                        text,
+                        duration: 10000,
+                        speed: 1000
+                    });
+                })
+                .catch((error) => {
+                    return
+                });
+            },
+
+            minutesSetting() {
+                axios.post('/api/facebook/settings', {
+                    minutes_min: this.minutes_min,
+                    minutes_max: this.minutes_max,
+                    type: 'minutes'
                 })
                 .then((response) => {
                     this.$notify({
