@@ -54,10 +54,10 @@
 		<script src="/template_stisla/dist/assets/modules/summernote/summernote-bs4.js"></script>
 		<script src="/template_stisla/dist/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script> --}}
 		<!-- Page Specific JS File -->
-		<script src="/template_stisla/dist/assets/js/page/index.js"></script>
+		{{-- <script src="/template_stisla/dist/assets/js/page/index.js"></script> --}}
 		<!-- Template JS File -->
 		<script src="/template_stisla/dist/assets/js/scripts.js"></script>
-		<script src="/template_stisla/dist/assets/js/custom.js"></script>
+		{{-- <script src="/template_stisla/dist/assets/js/custom.js"></script> --}}
 		{{-- END template_stisla --}}
 	</body>
 </html>
