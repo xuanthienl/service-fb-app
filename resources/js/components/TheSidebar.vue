@@ -46,7 +46,7 @@
                     <ul class="dropdown-menu">
                         <li v-bind:class="[$route.name == 'buff-share' ? 'active' : '']">
                             <router-link :to="{name: 'buff-share', query: { type: 'share' }}" class="nav-link">
-                                <i class="fa fa-solid fa-share"></i>
+                                <i class="fa fa-solid fa-share-from-square"></i>
                                 <span>Buff Share</span>
                             </router-link>
                         </li> 
@@ -58,19 +58,19 @@
                         </li>
                         <li v-bind:class="[$route.name == 'buff' && $route.query.type == 'view' ? 'active' : '']">
                             <router-link :to="{name: 'buff', query: { type: 'view' }}" class="nav-link">
-                                <i class="fa fa-solid fa-message"></i>
+                                <i class="fa fa-solid fa-users-viewfinder"></i>
                                 <span>Buff View</span>
                             </router-link>
                         </li>
                         <li v-bind:class="[$route.name == 'buff' && $route.query.type == 'like' ? 'active' : '']">
                             <router-link :to="{name: 'buff', query: { type: 'like' }}" class="nav-link">
-                                <i class="fa fa-solid fa-message"></i>
+                                <i class="fa fa-regular fa-thumbs-up"></i>
                                 <span>Buff Like</span>
                             </router-link>
                         </li>
                         <li v-bind:class="[$route.name == 'buff' && $route.query.type == 'live' ? 'active' : '']">
                             <router-link :to="{name: 'buff', query: { type: 'live' }}" class="nav-link">
-                                <i class="fa fa-solid fa-message"></i>
+                                <i class="fa fa-solid fa-eye"></i>
                                 <span>Buff Mắt</span>
                             </router-link>
                         </li>
