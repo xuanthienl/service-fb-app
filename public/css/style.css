@@ -94,6 +94,15 @@ body {
   color: #76838f;
 }
 
+.text-weight {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  text-decoration: none !important;
+  color: #76838f;
+}
+
 .card, .card .card-stats-title, .card.card-statistic-2 .card-icon {
   border-radius: 10px !important;
   border-color: #fff !important;

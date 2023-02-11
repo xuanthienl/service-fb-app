@@ -191,7 +191,7 @@ class FacebookController extends CmnController
             if ($sServicePayment === false) {
                 return response()->json([
                     'result'    => false,
-                    'message'   => 'Thất bại'
+                    'message'   => 'Đơn tăng share cho post/video/... Facebook của bạn đã thất bại. Vui lòng thử lại hoặc yêu cầu trợ giúp!'
                 ], 200);
             }
 
@@ -238,7 +238,7 @@ class FacebookController extends CmnController
 
         return response()->json([
             'result'    => true,
-            'message'   => 'Thành công'
+            'message'   => 'Đơn tăng share cho post/video/... Facebook của bạn đã được tạo thành công!'
         ], 200);
     }
 
@@ -273,7 +273,7 @@ class FacebookController extends CmnController
             if ($sServicePayment === false) {
                 return response()->json([
                     'result'    => false,
-                    'message'   => 'Thất bại'
+                    'message'   => 'Đơn tăng comment cho post/video/... Facebook của bạn đã thất bại. Vui lòng thử lại hoặc yêu cầu trợ giúp!'
                 ], 200);
             }
 
@@ -326,7 +326,7 @@ class FacebookController extends CmnController
 
         return response()->json([
             'result'    => true,
-            'message'   => 'Thành công'
+            'message'   => 'Đơn tăng comment cho post/video/... Facebook của bạn đã được tạo thành công!'
         ], 200);
     }
 
@@ -391,7 +391,7 @@ class FacebookController extends CmnController
             if ($sServicePayment === false) {
                 return response()->json([
                     'result'    => false,
-                    'message'   => 'Thất bại'
+                    'message'   => "Đơn tăng $oBuff->type cho post/video/... Facebook của bạn đã thất bại. Vui lòng thử lại hoặc yêu cầu trợ giúp!"
                 ], 200);
             }
 
@@ -414,7 +414,7 @@ class FacebookController extends CmnController
             $sUserName = is_null($oUser->name) === true ? $oUser->username : $oUser->name;
 
             // Send Notification
-            $sMsg = "<b>🔥 Buff Like</b>" .
+            $sMsg = "<b>🔥 Buff " . ucfirst($oBuff->type) . "</b>" .
             "\n" . 
             "\n" . 
             "User $sUserName vừa tạo đơn sử dụng dịch vụ tăng $oBuff->type cho post/video/... Facebook." .
@@ -445,7 +445,7 @@ class FacebookController extends CmnController
 
         return response()->json([
             'result'    => true,
-            'message'   => 'Thành công'
+            'message'   => "Đơn tăng $oBuff->type cho post/video/... Facebook của bạn đã được tạo thành công!"
         ], 200);
     }
 
@@ -516,6 +516,29 @@ class FacebookController extends CmnController
         return response()->json([
             'result'    => true,
             'message'   => 'Đã xác nhận hoàn thành.'
+        ], 200);
+    }
+
+    /**
+     * Post Buff Confirm Fail
+     */
+    public function PostBuffConfirmFail(Request $request, $id)
+    {
+        $oFacebook = Facebook::where('id', $id)->first();
+        $bRefundBalance = $this->refundServicePayment($oFacebook->user_id, $oFacebook->total_payment);
+        if ($bRefundBalance === false) {
+            return response()->json([
+                'result'    => false,
+                'message'   => 'Hoàn tiền thất bại. Quá trình hủy đơn đã bị tạm dừng!'
+            ], 200);
+        }
+
+        $oFacebook->status = '2';
+        $oFacebook->save();
+
+        return response()->json([
+            'result'    => true,
+            'message'   => 'Đã xác nhận thất bại và hoàn tiền cho User!'
         ], 200);
     }
 }

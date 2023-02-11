@@ -62,7 +62,7 @@
                                 <td>{{ order.created_at | dateFormat }}</td>
                                 <td>{{ order.total_payment | currencyFormatVND }}</td>
                                 <td><a :href="order.uid" target="_blank">{{ order.uid }}</a></td>
-                                <td><div class="badge" v-bind:class="[order.status == 0 ? 'badge-warning' : 'badge-primary']">{{ order.status == 0 ? 'Chờ xử lý' : 'Hoàn thành' }}</div></td>
+                                <td><div class="badge" v-bind:class="[order.status == 0 ? 'badge-warning' : 'badge-primary']">{{ order.status | checkStatus }}</div></td>
                             </tr>
                         </table>
                     </div>
@@ -252,6 +252,15 @@
             },
             currencyFormat(value) {
                 return NumberFormatEN.format(value)
+            },
+            checkStatus(value) {
+                if (value == '0') {
+                    return 'Chờ xử lý'
+                } else if (value == '1') {
+                    return 'Hoàn thành'
+                } else if (value == '2') {
+                    return 'Thất bại'
+                }
             }
         }
     }

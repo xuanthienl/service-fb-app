@@ -72,4 +72,16 @@ class CmnController extends Controller
             return false;
         }
     }
+
+    public function refundServicePayment($sUserId, $sTotalPayment)
+    {
+        try {
+            $user = User::where('id', $sUserId)->first();
+            $user->coin = (int) $user->coin + (int) $sTotalPayment;
+            $user->save();
+            return true;
+        } catch(Exception $e) {
+            return false;
+        }
+    }
 }
